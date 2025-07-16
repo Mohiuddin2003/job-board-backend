@@ -4,8 +4,8 @@ const jobSchema = new mongoose.Schema({
   title: String,
   company: String,
   location: String,
+  type: String,
   description: String,
-  type: String
 });
 
 module.exports = mongoose.model('Job', jobSchema);
