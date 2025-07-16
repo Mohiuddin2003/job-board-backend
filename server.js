@@ -7,11 +7,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ✅ This is the route your frontend calls
+const Job = require('./models/Job'); // Make sure this is correct
+
 app.get('/jobs', async (req, res) => {
-  const jobs = await Job.find();
-  res.json(jobs);
+  try {
+    const jobs = await Job.find();
+    res.json(jobs);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
 });
+
 
 // ✅ Optional test route
 app.get('/', (req, res) => {
